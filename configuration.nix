@@ -65,8 +65,8 @@
   fileSystems."/nix" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=nix" "compress=zstd" "noatime" ]
-  }
+    options = [ "subvol=nix" "compress=zstd"];
+  };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/boot";
