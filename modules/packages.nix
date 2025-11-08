@@ -16,5 +16,8 @@
     go
     gopls
     delve
+    virtualbox
+    vscode
+    vagrant
   ];
 }

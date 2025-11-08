@@ -11,6 +11,7 @@
       "audio"
       "video"
       "input"
+      "vboxusers"
     ];
     initialPassword = "1111";
   };
