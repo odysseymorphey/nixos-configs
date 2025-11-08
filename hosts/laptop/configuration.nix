@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     ./hardware-configuration.nix
@@ -18,12 +22,21 @@
   users.users.nixos = {
     isNormalUser = true;
     description = "Odyssey Morphey";
-    extraGroups = [ "wheel" "networkmanager" "audio" "video" "input" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "audio"
+      "video"
+      "input"
+    ];
     initialPassword = "1111";
   };
 
   nix.package = pkgs.nixVersions.stable;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   hardware.graphics = {
     enable = true;
@@ -53,19 +66,29 @@
   fileSystems."/" = {
     device = lib.mkForce "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=root" "compress=zstd" "noatime" ];
+    options = [
+      "subvol=root"
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   fileSystems."/home" = {
     device = lib.mkForce "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=home" "compress=zstd" ];
+    options = [
+      "subvol=home"
+      "compress=zstd"
+    ];
   };
 
   fileSystems."/nix" = {
     device = lib.mkForce "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=nix" "compress=zstd"];
+    options = [
+      "subvol=nix"
+      "compress=zstd"
+    ];
   };
 
   fileSystems."/boot" = {
@@ -76,40 +99,48 @@
   services.snapper.configs = {
     root = {
       SUBVOLUME = "/";
-      TIMELINE_CREATE  = true;
+      TIMELINE_CREATE = true;
       TIMELINE_CLEANUP = true;
-      TIMELINE_LIMIT_HOURLY  = 24;
-      TIMELINE_LIMIT_DAILY   = 7;
-      TIMELINE_LIMIT_WEEKLY  = 4;
+      TIMELINE_LIMIT_HOURLY = 24;
+      TIMELINE_LIMIT_DAILY = 7;
+      TIMELINE_LIMIT_WEEKLY = 4;
       TIMELINE_LIMIT_MONTHLY = 3;
-      TIMELINE_LIMIT_YEARLY  = 0;
+      TIMELINE_LIMIT_YEARLY = 0;
     };
 
     home = {
       SUBVOLUME = "/home";
-      TIMELINE_CREATE  = true;
+      TIMELINE_CREATE = true;
       TIMELINE_CLEANUP = true;
-      TIMELINE_LIMIT_HOURLY  = 24;
-      TIMELINE_LIMIT_DAILY   = 7;
-      TIMELINE_LIMIT_WEEKLY  = 4;
+      TIMELINE_LIMIT_HOURLY = 24;
+      TIMELINE_LIMIT_DAILY = 7;
+      TIMELINE_LIMIT_WEEKLY = 4;
       TIMELINE_LIMIT_MONTHLY = 3;
-      TIMELINE_LIMIT_YEARLY  = 0;
+      TIMELINE_LIMIT_YEARLY = 0;
     };
   };
-
 
   services.flatpak.enable = true;
   xdg.portal.enable = true;
   services.fwupd.enable = true;
 
   environment.systemPackages = with pkgs; [
-    git neovim wget curl
-    pkgs.gnome-tweaks gnomeExtensions.dash-to-dock
-    gnomeExtensions.appindicator gnomeExtensions.blur-my-shell
+    git
+    neovim
+    wget
+    curl
+    pkgs.gnome-tweaks
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.appindicator
+    gnomeExtensions.blur-my-shell
     gnomeExtensions.user-themes
     xdg-utils
-    zip unzip p7zip
-    go gopls delve
+    zip
+    unzip
+    p7zip
+    go
+    gopls
+    delve
   ];
 
   security.sudo.wheelNeedsPassword = true;
