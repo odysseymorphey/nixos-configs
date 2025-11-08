@@ -13,8 +13,6 @@ nvimlog
 .log/
 .cache/
 
-hardware-configuration.nix
-
 .DS_Store
 Thumbs.db
 *.swp
