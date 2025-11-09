@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   programs.zsh.enable = true;
+  programs.firefox.enable = true;
   environment.shells = [ pkgs.zsh ];
   users.users.nixos = {
     isNormalUser = true;
@@ -12,6 +13,7 @@
       "video"
       "input"
       "vboxusers"
+      "docker"
     ];
     initialPassword = "1111";
   };
