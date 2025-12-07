@@ -14,5 +14,9 @@
     google-chrome
     postman
     amnezia-vpn
+    netbird-ui
+    # pgadmin4
+    gcc gnumake
+    mtr
   ];
 }

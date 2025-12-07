@@ -14,6 +14,7 @@
       "input"
       "vboxusers"
       "docker"
+      "tun"
     ];
     initialPassword = "1111";
   };
